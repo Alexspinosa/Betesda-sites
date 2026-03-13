@@ -13,11 +13,12 @@
         <div class="hero-bg-default"></div>
     {% endif %}
 
+    <!-- Contenido del hero -->
     <div class="hero-content">
-        <div class="hero-tag"></div>
-        <h1 class="hero-title">
-            {{ page.title }}
-        </h1>
+        <div class="hero-tag">{{ page.sede_name }}</div>
+            <h1 class="hero-title">
+                {{ page.titulo_normal }} <br><span>{{ page.titulo_destacado }}</span>
+            </h1>
         {% if page.subtitulo %}
         <p class="hero-subtitle">{{ page.subtitulo }}</p>
         {% endif %}
