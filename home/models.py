@@ -6,6 +6,8 @@ from wagtail.admin.panels import FieldPanel
 
 
 class HomePage(Page):
+    titulo_normal = models.CharField("Título normal", max_length=100, blank=True)
+    titulo_destacado = models.CharField("Título destacado", max_length=100, blank=True)
     subtitulo = models.CharField(max_length=255, blank=True)
     boton_texto = models.CharField(max_length=100, blank=True)
     boton_url = models.URLField(blank=True)

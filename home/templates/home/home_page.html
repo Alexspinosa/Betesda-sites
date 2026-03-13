@@ -1,22 +1,28 @@
 {% extends "base.html" %}
-{% load wagtailimages_tags %}
+{% load static wagtailimages_tags %}
 
 {% block content %}
 
 <!-- Hero -->
-<section class="hero"
+<section class="hero-home">
     {% if page.imagen_hero %}
-    {% image page.imagen_hero fill-1600x600 as img %}
-    style="background-image: url('{{ img.url }}');"
+        {% image page.imagen_hero fill-1600x800 as img %}
+        <div class="hero-bg" style="background-image: url('{{ img.url }}');"></div>
+        <div class="hero-overlay"></div>
+    {% else %}
+        <div class="hero-bg-default"></div>
     {% endif %}
->
-    <div>
-        <h1 class="display-3">{{ page.title }}</h1>
+
+    <div class="hero-content">
+        <div class="hero-tag"></div>
+        <h1 class="hero-title">
+            {{ page.title }}
+        </h1>
         {% if page.subtitulo %}
-        <p class="lead">{{ page.subtitulo }}</p>
+        <p class="hero-subtitle">{{ page.subtitulo }}</p>
         {% endif %}
         {% if page.boton_texto %}
-        <a href="{{ page.boton_url }}" class="btn btn-primary btn-lg mt-3">
+        <a href="{{ page.boton_url }}" class="btn-primary-betesda">
             {{ page.boton_texto }}
         </a>
         {% endif %}
