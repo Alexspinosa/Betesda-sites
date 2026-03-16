@@ -1,31 +1,62 @@
-{% load static %}
 
-<footer class="bg-dark text-white py-4 mt-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <h5>Iglesia Cristiana Betesda</h5>
-                <p>Transformando vidas a través de la Palabra de Dios.</p>
-            </div>
-            <div class="col-md-4">
-                <h5>Enlaces</h5>
-                <ul class="list-unstyled">
-                    <li><a href="/" class="text-white">Inicio</a></li>
-                    <li><a href="/eventos/" class="text-white">Eventos</a></li>
-                    <li><a href="/ensenanzas/" class="text-white">Enseñanzas</a></li>
-                    <li><a href="/contacto/" class="text-white">Contacto</a></li>
-                </ul>
-            </div>
-            <div class="col-md-4">
-                <h5>Contacto</h5>
-                <p>📍 Tu dirección aquí</p>
-                <p>📞 Tu teléfono aquí</p>
-                <p>✉️ Tu email aquí</p>
-            </div>
+{% load static menu_tags %}
+
+<footer class="footer-betesda">
+    <div class="footer-grid">
+
+        <!-- Marca -->
+        <div class="footer-brand">
+            <img src="{% static 'img/logo_ccb.jpg' %}" alt="Logo Betesdâ">
+            <span class="footer-logo-text">Betesdâ</span>
+            <span class="footer-logo-sub">Comunidad Cristiana</span>
+            <p>Transformando vidas a través de la Palabra de Dios.</p>
         </div>
-        <hr class="bg-white">
-        <div class="text-center">
-            <p class="mb-0">Iglesia Cristiana Betesda © 2026</p>
+
+        <!-- Enlaces dinámicos desde el admin -->
+        <div class="footer-col">
+            <h5>Enlaces</h5>
+            <ul>
+                {% get_menu "principal" as menu %}
+                {% if menu %}
+                    {% for item in menu.menu_items.all %}
+                    <li>
+                        <a href="{{ item.get_url }}">{{ item.titulo }}</a>
+                    </li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
         </div>
+
+        <!-- Contacto dinámico desde el admin -->
+        <div class="footer-col">
+            <h5>Contacto</h5>
+            {% get_contacto as contacto %}
+            {% if contacto %}
+                {% if contacto.direccion %}
+                <p>📍 {{ contacto.direccion }}</p>
+                {% endif %}
+                {% if contacto.telefono %}
+                <p>📞 {{ contacto.telefono }}</p>
+                {% endif %}
+                {% if contacto.email %}
+                <p>✉️ {{ contacto.email }}</p>
+                {% endif %}
+                {% for red in contacto.redes_sociales.all %}
+                <a href="{{ red.url }}" class="footer-red-social">
+                    {{ red.get_red_display }}
+                </a>
+                {% endfor %}
+            {% else %}
+                <p>📍 Turbaco, Bolívar</p>
+                <p>📞 +57 300 000 0000</p>
+                <p>✉️ info@betesda.com</p>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>Betesdâ <span>Comunidad Cristiana</span> © 2026</p>
     </div>
 </footer>
+    
