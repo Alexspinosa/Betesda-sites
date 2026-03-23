@@ -1,0 +1,20 @@
+
+<!--Pagina hero_page.html-->
+
+{% load wagtailimages_tags %}
+
+<section class="hero-home">
+    {% if page.imagen_destacada %}
+        {% image page.imagen_destacada fill-1600x800 as img %}
+        <div class="hero-bg" style="background-image: url('{{ img.url }}');"></div>
+        <div class="hero-overlay"></div>
+    {% else %}
+        <div class="hero-bg-default"></div>
+    {% endif %}
+    <div class="hero-content">
+        {% if page.sede_nombre %}
+        <div class="hero-tag">{{ page.sede_nombre }}</div>
+        {% endif %}
+        <h1 class="hero-title">{{ page.title }}</h1>
+    </div>
+</section>

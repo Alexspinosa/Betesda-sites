@@ -1,0 +1,52 @@
+
+<!--Pagina Resource_page.html-->
+
+{% extends "base.html" %}
+{% load static wagtailimages_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/resources.css' %}">
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/hero_page.html" %}
+
+<div class="page-content">
+
+    <div class="destacado">
+        {% if page.etiqueta %}
+        <span class="section-tag">{{ page.etiqueta }}</span>
+        {% endif %}
+
+        <h2 class="section-heading">
+            {{ page.titulo_contenido }} —
+            {% if page.titulo_acento %}
+            <span>{{ page.titulo_acento }}</span>
+            {% endif %}
+        </h2>
+
+        {% if page.descripcion %}
+        <p class="recursos-desc">
+            {{ page.descripcion }}
+        </p>
+        {% endif %}
+
+        <div class="recursos-botones">
+            {% if page.documento %}
+            <a href="{{ page.documento.url }}" class="btn-primary-betesda" download>
+                {{ page.texto_boton_descarga }}
+            </a>
+            {% endif %}
+
+            {% if page.url_externa %}
+            <a href="{{ page.url_externa }}" class="btn-outline-betesda" target="_blank">
+                {{ page.texto_boton_externo }}
+            </a>
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
