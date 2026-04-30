@@ -30,24 +30,39 @@ img { max-width:100%; height:auto; }
 h1,h2,h3,h4,h5,h6 { font-family:var(--font-main); font-weight:700; line-height:1.2; }
 p { color:var(--gray-light); line-height:1.8; }
 
-/* ==============================
-    NAVBAR
-============================== */
+/*======================
+        LOGO
+========================*/
+.navbar-logo img {
+    width: 120px;
+    height: auto;
+    border-radius:0;
+    object-fit: contain;
+}
+
+
+/* ========================
+        NAVBAR
+===========================*/
 .navbar-betesda {
     position:fixed; top:0; left:0; right:0; z-index:1000;
     display:flex; justify-content:space-between; align-items:center;
-    padding:15px 60px;
+    padding:0px 60px;
     background:rgba(255,255,255,0.97);
     backdrop-filter:blur(10px);
     border-bottom:1px solid var(--bg-3);
     box-shadow:0 2px 20px rgba(0,0,0,0.08);
     transition:.3s;
+    height: 65px;
+
 }
 .navbar-betesda.scrolled { padding:10px 60px; box-shadow:0 5px 30px rgba(0,0,0,.1); }
+
 .navbar-logo { display:flex; align-items:center; gap:12px; }
-.navbar-logo img { width:45px; height:45px; border-radius:50%; object-fit:cover; }
+.navbar-logo img { width: 80px; height: auto; border-radius:0; object-fit:contain; mix-blend-mode:multiply; }
 .navbar-logo-text { font-family:var(--font-main); font-weight:900; font-size:1.1rem; color:var(--primary); text-transform:uppercase; letter-spacing:2px; }
 .navbar-logo-sub { font-size:.55rem; color:var(--gray); text-transform:uppercase; letter-spacing:3px; display:block; }
+
 .navbar-links { display:flex; align-items:center; gap:5px; list-style:none; }
 .navbar-links a { font-family:var(--font-main); font-size:.7rem; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:var(--gray-light); padding:8px 15px; border-radius:4px; }
 .navbar-links a:hover { color:var(--primary); background:var(--primary-xlight); }
@@ -107,7 +122,7 @@ main { padding-top:75px; }
 ============================== */
 .footer-betesda { background:var(--bg-2); border-top:1px solid var(--bg-3); padding:60px 60px 30px; margin-top:80px; }
 .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr; gap:50px; margin-bottom:40px; }
-.footer-brand img { width:60px; height:60px; border-radius:50%; object-fit:cover; margin-bottom:15px; }
+.footer-brand img { width: auto; height: 60px; object-fit: contain; mix-blend-mode: multiply;}
 .footer-logo-text { font-family:var(--font-main); font-weight:900; font-size:1.2rem; color:var(--primary); text-transform:uppercase; letter-spacing:2px; display:block; }
 .footer-logo-sub { font-size:0.6rem; color:var(--gray); text-transform:uppercase; letter-spacing:3px; display:block; margin-bottom:15px; }
 .footer-brand p { font-size:0.85rem; color:var(--gray); line-height:1.8; max-width:280px; }
