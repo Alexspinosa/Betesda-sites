@@ -1,0 +1,73 @@
+
+<!--Pagina resource_index_page.html-->
+
+{% extends "base.html" %}
+{% load static wagtailimages_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/resources.css' %}">
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/hero_page.html" %}
+
+<div class="page-content">
+
+    <!-- FILTROS -->
+    <div class="filtros">
+        <a href="?" class="filtro-btn {% if not categoria_activa %}active{% endif %}">Todos</a>
+        <a href="?categoria=sermon" class="filtro-btn {% if categoria_activa == 'sermon' %}active{% endif %}">Sermones</a>
+        <a href="?categoria=devocional" class="filtro-btn {% if categoria_activa == 'devocional' %}active{% endif %}">Devocionales</a>
+        <a href="?categoria=libro" class="filtro-btn {% if categoria_activa == 'libro' %}active{% endif %}">Libros y PDF</a>
+    </div>
+
+    <!-- GRID -->
+    <div class="recursos-section">
+        <div class="recursos-grid">
+
+            {% for recurso in recursos %}
+            <div class="recurso-item">
+
+                {% if recurso.imagen_destacada %}
+                    {% image recurso.imagen_destacada fill-400x220 as img %}
+                    <img src="{{ img.url }}" alt="{{ recurso.title }}" class="recurso-item-img">
+                {% else %}
+                    <div class="recurso-item-img-placeholder"></div>
+                {% endif %}
+
+                <span class="recurso-item-tag">
+                    {{ recurso.get_categoria_display }}
+                </span>
+
+                <p class="recurso-item-title">
+                    {{ recurso.title }}
+                </p>
+
+                <p class="recurso-item-desc">
+                    {{ recurso.descripcion|truncatewords:15 }}
+                </p>
+
+                <div class="recurso-item-meta">
+                    {% if recurso.tiempo_lectura %}
+                    <span class="recurso-meta-badge">
+                        ⏱ {{ recurso.tiempo_lectura }}
+                    </span>
+                    {% endif %}
+
+                    <a href="{{ recurso.url }}" class="recurso-item-link">
+                        Ver recurso →
+                    </a>
+                </div>
+
+            </div>
+            {% empty %}
+            <p class="recursos-empty">No hay recursos disponibles.</p>
+            {% endfor %}
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
